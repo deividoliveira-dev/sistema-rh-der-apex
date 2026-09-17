@@ -1,0 +1,9 @@
+# Sistema/editor
+.DS_Store
+Thumbs.db
+*.log
+
+# Exports/dumps que não devem ir pro repo (dados reais de funcionários)
+*.csv
+*.xlsx
+*.dmp
