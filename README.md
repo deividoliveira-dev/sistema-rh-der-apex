@@ -24,6 +24,7 @@ sql/
   03_views_dashboard.sql       -- views de apoio para os cards/relatórios do dashboard
   04_categorias_rg_ua.sql      -- tabelas categorias/UA + colunas rg/categoria/ua em funcionarios
   05_carga_planilha.sql        -- carga em massa de funcionários a partir de planilha (staging + insert)
+  06_ajustes_pos_apex.sql      -- número do processo em férias/ocorrências + tipo de ocorrência LICENCA
 
 historico/
   01_ddl_sistema_rh_sem_rhusuarios.sql  -- versão inicial da DDL (antes de renomear USUARIOS -> RH_USUARIOS)
@@ -34,7 +35,7 @@ historico/
 
 ## Ordem de execução
 
-Rodar os scripts da pasta `sql/` **em ordem numérica** (01 a 05). O script 05 (carga da planilha) depende das tabelas criadas no 04.
+Rodar os scripts da pasta `sql/` **em ordem numérica** (01 a 06). O script 05 (carga da planilha) depende das tabelas criadas no 04, e o 06 aplica os ajustes feitos depois, durante a construção do app no APEX.
 
 Requisitos: Oracle 12c ou superior (usa colunas `GENERATED ALWAYS AS IDENTITY`) e uma instância do Oracle APEX para a camada de interface (não incluída neste repositório).
 
