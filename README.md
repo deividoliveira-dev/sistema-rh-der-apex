@@ -24,7 +24,7 @@ sql/
   03_views_dashboard.sql       -- views de apoio para os cards/relatórios do dashboard
   04_categorias_rg_ua.sql      -- tabelas categorias/UA + colunas rg/categoria/ua em funcionarios
   05_carga_planilha.sql        -- carga em massa de funcionários a partir de planilha (staging + insert)
-  06_ajustes_pos_apex.sql      -- número do processo em férias/ocorrências + tipo de ocorrência LICENCA
+  06_ajustes_pos_apex.sql      -- número do processo, tipo LICENCA e view de férias do próximo mês
 
 historico/
   01_ddl_sistema_rh_sem_rhusuarios.sql  -- versão inicial da DDL (antes de renomear USUARIOS -> RH_USUARIOS)
