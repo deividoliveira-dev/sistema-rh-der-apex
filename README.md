@@ -26,6 +26,10 @@ sql/
   05_carga_planilha.sql        -- carga em massa de funcionários a partir de planilha (staging + insert)
   06_ajustes_pos_apex.sql      -- número do processo, tipo LICENCA e view de férias do próximo mês
 
+apex/
+  estilos.css                  -- CSS do app (logo do cabeçalho, círculos dos ícones dos cards)
+  app.js                       -- tooltip com o nome nos ícones do menu lateral
+
 historico/
   01_ddl_sistema_rh_sem_rhusuarios.sql  -- versão inicial da DDL (antes de renomear USUARIOS -> RH_USUARIOS)
   04_carga_planilha_v1.sql              -- primeiras versões do script de carga, mantidas como referência

@@ -1,0 +1,25 @@
+/* Logo do cabeçalho: para mudar o tamanho, altere só o valor de --logo-altura */
+:root {
+  --logo-altura: 52px;
+}
+
+.apex-logo-img {
+  height: var(--logo-altura) !important;
+  width: auto !important;
+  max-height: none !important;
+  max-width: none !important;
+  vertical-align: middle;
+}
+
+.t-Header-logo-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Círculos dos ícones dos cards da Home: todos no mesmo amarelo */
+.a-CardView-icon,
+.a-CardView-initials,
+.t-Cards-icon {
+  background-color: #EBCF6B !important;
+  color: #1F1F1F !important;
+}

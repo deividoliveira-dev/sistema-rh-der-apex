@@ -33,16 +33,17 @@ SELECT fr.id_ferias,
    AND fr.data_inicio >= ADD_MONTHS(TRUNC(SYSDATE, 'MM'), 1)
    AND fr.data_inicio <  ADD_MONTHS(TRUNC(SYSDATE, 'MM'), 2);
 
--- Consulta da região de cards da Home (4 indicadores em uma região só):
--- SELECT valor, titulo
+-- Consulta da região de cards da Home (3 indicadores em uma região só, com ícone Font APEX):
+-- SELECT valor, titulo, icone
 --   FROM (
---         SELECT 1 AS ordem, COUNT(*) AS valor, 'Funcionários' AS titulo FROM funcionarios
+--         SELECT 1 AS ordem, COUNT(*) AS valor, 'Funcionários' AS titulo, 'fa fa-users' AS icone
+--           FROM funcionarios
 --         UNION ALL
---         SELECT 2, COUNT(*), 'Férias no próximo mês' FROM vw_ferias_proximo_mes
+--         SELECT 2, COUNT(*), 'Férias no próximo mês', 'fa fa-calendar'
+--           FROM vw_ferias_proximo_mes
 --         UNION ALL
---         SELECT 3, COUNT(*), 'Ocorrências no mês' FROM ocorrencias
+--         SELECT 3, COUNT(*), 'Ocorrências no mês', 'fa fa-exclamation-triangle'
+--           FROM ocorrencias
 --          WHERE data_ocorrencia >= TRUNC(SYSDATE, 'MM')
---         UNION ALL
---         SELECT 4, COUNT(*), 'Atestados' FROM ocorrencias WHERE tipo_ocorrencia = 'ATESTADO'
 --        )
 --  ORDER BY ordem
