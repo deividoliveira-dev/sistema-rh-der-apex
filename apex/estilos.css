@@ -1,6 +1,6 @@
 /* Logo do cabeçalho: para mudar o tamanho, altere só o valor de --logo-altura */
 :root {
-  --logo-altura: 52px;
+  --logo-altura: 72px;
 }
 
 .apex-logo-img {
@@ -16,10 +16,152 @@
   align-items: center;
 }
 
+/* Balão com o nome ao passar o mouse nos itens do menu lateral */
+.t-Body-nav,
+.t-Body-navContent,
+.t-Body-nav .a-TreeView {
+  overflow: visible !important;
+}
+
+.t-Body-nav a[data-tip] {
+  position: relative;
+}
+
+.t-Body-nav a[data-tip]:hover::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: #2B2B2B;
+  color: #FFFFFF;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  white-space: nowrap;
+  z-index: 2000;
+  pointer-events: none;
+}
+
 /* Círculos dos ícones dos cards da Home: todos no mesmo amarelo */
 .a-CardView-icon,
 .a-CardView-initials,
 .t-Cards-icon {
   background-color: #EBCF6B !important;
   color: #1F1F1F !important;
+}
+
+/* Cards da Home: número grande em destaque e rótulo pequeno embaixo */
+.a-CardView-title {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.a-CardView-subTitle {
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #6B6B6B;
+}
+
+/* Acabamento da Home: cards e quadros com cantos arredondados e sombra suave */
+.a-CardView-item,
+.a-CardView-items > li,
+.t-Region {
+  border-radius: 12px;
+  border: 1px solid #ECEAE5;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.t-Region {
+  overflow: hidden;
+}
+
+.t-Region-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Tabelas da Home: cabeçalho discreto, linhas limpas, uma linha por registro */
+.t-Report-report {
+  width: 100%;
+}
+
+.t-Report-report th,
+.t-Report-colHead {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  background-color: #FAF9F7;
+  color: #6B6B6B !important;
+}
+
+.t-Report-report th a {
+  color: #6B6B6B !important;
+}
+
+.t-Report-report td {
+  font-size: 0.85rem;
+  padding: 10px 14px;
+  white-space: nowrap;
+  border-color: #F0EEE9;
+  background-color: #FFFFFF;
+}
+
+.t-Report-report tbody tr:hover td {
+  background-color: #FBF6E4;
+}
+
+/* Tabela encaixada no quadro: ocupa a largura toda, sem moldura própria */
+.t-Region-body:has(.t-Report) {
+  padding: 0 !important;
+}
+
+.t-Region-header:has(+ .t-Region-bodyWrap .t-Report),
+.t-Region:has(.t-Report) .t-Region-header {
+  border-bottom: 1px solid #F0EEE9;
+}
+
+.t-Report,
+.t-Report-wrap,
+.t-Report-tableWrap {
+  width: 100%;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.t-Report-report th,
+.t-Report-report td {
+  border-left: 0 !important;
+  border-right: 0 !important;
+}
+
+.t-Report-report th:first-child,
+.t-Report-report td:first-child {
+  padding-left: 20px;
+}
+
+.t-Report-report th:last-child,
+.t-Report-report td:last-child {
+  padding-right: 20px;
+}
+
+.t-Report-report tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* Home: quadros com tabela têm a altura do próprio conteúdo */
+.t-Region:has(.t-Report) {
+  height: auto !important;
+  min-height: 0 !important;
+  align-self: start;
+}
+
+.t-Region:has(.t-Report) .t-Region-bodyWrap,
+.t-Region:has(.t-Report) .t-Region-body {
+  height: auto !important;
+  min-height: 0 !important;
 }

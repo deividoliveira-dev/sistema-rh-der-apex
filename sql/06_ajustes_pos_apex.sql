@@ -15,6 +15,11 @@ ALTER TABLE ocorrencias ADD CONSTRAINT ck_ocor_tipo
   CHECK (tipo_ocorrencia IN
     ('ANOTACAO','FALTA','ATRASO','ADVERTENCIA','ATESTADO','ELOGIO','OUTRO','LICENCA'));
 
+-- CPF, RG e UA aceitam qualquer formato (com ou sem pontuação): sem regra de 11 números
+ALTER TABLE funcionarios DROP CONSTRAINT ck_func_cpf_formato;
+ALTER TABLE funcionarios MODIFY (cpf VARCHAR2(30 CHAR));
+ALTER TABLE funcionarios MODIFY (rg VARCHAR2(30 CHAR), ua_codigo VARCHAR2(30 CHAR));
+
 -- Férias que começam no mês seguinte ao atual (tabela do dashboard)
 CREATE OR REPLACE VIEW vw_ferias_proximo_mes AS
 SELECT fr.id_ferias,
