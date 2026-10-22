@@ -24,11 +24,13 @@ sql/
   03_views_dashboard.sql       -- views de apoio para os cards/relatórios do dashboard
   04_categorias_rg_ua.sql      -- tabelas categorias/UA + colunas rg/categoria/ua em funcionarios
   05_carga_planilha.sql        -- carga em massa de funcionários a partir de planilha (staging + insert)
-  06_ajustes_pos_apex.sql      -- número do processo, tipo LICENCA e view de férias do próximo mês
+  06_ajustes_pos_apex.sql      -- número do processo, tipo LICENCA, CPF/RG/UA flexíveis e view de férias do próximo mês
+  07_periodo_ferias.sql        -- período das férias (1º ao 4º)
 
 apex/
-  estilos.css                  -- CSS do app (logo do cabeçalho, círculos dos ícones dos cards)
+  estilos.css                  -- CSS do app (logo, cards, quadros e tabelas da Home)
   app.js                       -- tooltip com o nome nos ícones do menu lateral
+  consultas_paginas.sql        -- consultas de cada região das páginas do APEX (referência)
 
 historico/
   01_ddl_sistema_rh_sem_rhusuarios.sql  -- versão inicial da DDL (antes de renomear USUARIOS -> RH_USUARIOS)
@@ -39,7 +41,16 @@ historico/
 
 ## Ordem de execução
 
-Rodar os scripts da pasta `sql/` **em ordem numérica** (01 a 06). O script 05 (carga da planilha) depende das tabelas criadas no 04, e o 06 aplica os ajustes feitos depois, durante a construção do app no APEX.
+Rodar os scripts da pasta `sql/` **em ordem numérica** (01 a 07). O script 05 (carga da planilha) depende das tabelas criadas no 04, e o 06 e o 07 aplicam os ajustes feitos depois, durante a construção do app no APEX.
+
+## Telas do app (Oracle APEX)
+
+- **Home**: indicadores clicáveis (funcionários, férias do próximo mês, ocorrências do mês), férias do próximo mês e atualizações recentes
+- **Funcionários**: lista com busca e cadastro (CPF, RG e UA aceitam qualquer formato)
+- **Histórico - Funcionário**: férias e ocorrências de um funcionário, de 12 meses antes a 12 meses depois
+- **Cargos**: grade editável
+- **Férias**: lista com período (1º ao 4º), número do processo e filtro de recentes
+- **Ocorrências**: lista e cadastro, com número do processo
 
 Requisitos: Oracle 12c ou superior (usa colunas `GENERATED ALWAYS AS IDENTITY`) e uma instância do Oracle APEX para a camada de interface (não incluída neste repositório).
 
