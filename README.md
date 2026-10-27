@@ -28,8 +28,11 @@ sql/
   07_periodo_ferias.sql        -- período das férias (1º ao 4º)
 
 apex/
-  estilos.css                  -- CSS do app (logo, cards, quadros e tabelas da Home)
+  estilos.css                  -- CSS do app (logo, cards, quadros e tabelas da Home, tela de login)
   app.js                       -- tooltip com o nome nos ícones do menu lateral
+  rodovia.webp                 -- imagem de fundo da tela de login (gerada por IA)
+  icons/                       -- logo do DER em PNG (app-icon-*.png), usado na tela de login
+                                  (no APEX: Static Application Files, diretório icons)
   consultas_paginas.sql        -- consultas de cada região das páginas do APEX (referência)
 
 historico/
@@ -45,6 +48,7 @@ Rodar os scripts da pasta `sql/` **em ordem numérica** (01 a 07). O script 05 (
 
 ## Telas do app (Oracle APEX)
 
+- **Login**: fundo com imagem desfocada, logo do DER e campos claros (o CSS da imagem fica no campo Inline da página 9999)
 - **Home**: indicadores clicáveis (funcionários, férias do próximo mês, ocorrências do mês), férias do próximo mês e atualizações recentes
 - **Funcionários**: lista com busca e cadastro (CPF, RG e UA aceitam qualquer formato)
 - **Histórico - Funcionário**: férias e ocorrências de um funcionário, de 12 meses antes a 12 meses depois

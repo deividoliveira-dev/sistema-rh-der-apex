@@ -111,8 +111,8 @@
   background-color: #FFFFFF;
 }
 
-.t-Report-report tbody tr:hover td {
-  background-color: #FBF6E4;
+.t-Report-report td {
+  cursor: default;
 }
 
 /* Tabela encaixada no quadro: ocupa a largura toda, sem moldura própria */
@@ -164,4 +164,152 @@
 .t-Region:has(.t-Report) .t-Region-body {
   height: auto !important;
   min-height: 0 !important;
+}
+
+/* Home: quadros com tabela em tom informativo (somente leitura) */
+.t-Region:has(.t-Report) {
+  background-color: #F6F4EF;
+  border: 1px solid #E4E0D6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06), 0 12px 30px rgba(0, 0, 0, 0.14);
+}
+
+.t-Region:has(.t-Report) .t-Region-header {
+  background-color: #EFEBE0;
+}
+
+.t-Report-report th,
+.t-Report-colHead {
+  background-color: #EFEBE0;
+  color: #7A766D !important;
+}
+
+.t-Report-report td {
+  background-color: transparent;
+  color: #5E5B55;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  border-color: #E4E0D6;
+}
+
+.t-Report-report tbody tr:hover td {
+  background-color: transparent;
+}
+
+/* ===== Tela de login (estilo app) ===== */
+body.t-PageBody--login {
+  background: #2E2A27;
+}
+.t-Login-region {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+/* logo do DER maior, sem o quadrado em volta (o corte central tira a margem transparente do PNG) */
+.t-Login-logo {
+  width: 260px;
+  height: 110px;
+  object-fit: cover;
+  object-position: center;
+  background-color: transparent !important;
+  background-size: cover;
+  background-position: center;
+  border-radius: 0;
+}
+.t-Login-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: #F6F4EF;
+}
+.t-Login-title::after {
+  content: "Gestão de Recursos Humanos";
+  display: block;
+  margin-top: 6px;
+  font-size: .8rem;
+  font-weight: 400;
+  letter-spacing: .02em;
+  color: #D8D3C6;
+}
+
+/* campos */
+.t-Login-region input[type="text"],
+.t-Login-region input[type="password"] {
+  height: 52px;
+  background: #F6F4EF;
+  border: 1px solid #E4E0D6;
+  border-radius: 12px;
+  color: #1F1F1F;
+  box-shadow: none;
+}
+.t-Login-region input::placeholder {
+  color: #7A766D;
+}
+.t-Login-region input[type="text"]:focus,
+.t-Login-region input[type="password"]:focus {
+  border-color: #EBCF6B;
+  box-shadow: 0 0 0 1px #EBCF6B;
+}
+.t-Login-region .apex-item-icon,
+.t-Login-region .fa {
+  color: #6B6B6B;
+}
+.t-Login-region label {
+  color: #F6F4EF;
+}
+
+/* olhinho de mostrar senha: dentro do campo, sem caixa própria */
+.t-Login-region .apex-item-group--password {
+  position: relative;
+}
+.t-Login-region .apex-item-group--password input {
+  width: 100%;
+  padding-right: 48px;
+}
+.t-Login-region .t-Button--passwordVisibility {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: #6B6B6B;
+}
+.t-Login-region .t-Button--passwordVisibility .t-Icon,
+.t-Login-region .t-Button--passwordVisibility .fa {
+  color: #6B6B6B;
+}
+.t-Login-region .t-Button--passwordVisibility:hover {
+  background: rgba(0, 0, 0, .06);
+}
+.t-Login-region .t-Button--passwordVisibility:focus {
+  box-shadow: none;
+  outline: 2px solid #EBCF6B;
+  outline-offset: -2px;
+}
+
+/* impede o fundo azul claro do preenchimento automático do navegador */
+.t-Login-region input:-webkit-autofill,
+.t-Login-region input:-webkit-autofill:hover,
+.t-Login-region input:-webkit-autofill:focus,
+.t-Login-region input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #F6F4EF inset !important;
+  -webkit-text-fill-color: #1F1F1F !important;
+  caret-color: #1F1F1F;
+  transition: background-color 99999s ease-in-out 0s;
+}
+
+/* botão */
+.t-Login-buttons .t-Button--hot {
+  height: 52px;
+  background: #EBCF6B;
+  color: #2E2A27;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  box-shadow: none;
+}
+.t-Login-buttons .t-Button--hot:hover {
+  background: #E2C25A;
 }
