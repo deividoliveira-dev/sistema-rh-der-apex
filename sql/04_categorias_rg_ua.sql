@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 -- SISTEMA RH - DER
 -- Script 05 (FINAL): RG, CATEGORIA e UA já no formato definitivo
--- Rode depois do 01, 02 e 03.
+-- Rode depois do 01 e do 03.
 --------------------------------------------------------------------------------
 
 -- Tabela de domínio: CATEGORIAS
