@@ -49,12 +49,12 @@ Rodar os scripts da pasta `sql/` **em ordem numérica** (01, 03, 04, 05, 06 e 07
 ## Telas do app (Oracle APEX)
 
 - **Login**: fundo com imagem desfocada, logo do DER e campos claros (o CSS da imagem fica no campo Inline da página 9999)
-- **Home**: indicadores clicáveis (funcionários, férias do próximo mês, ocorrências do mês), férias do próximo mês e atualizações recentes
+- **Home**: indicadores clicáveis (funcionários, férias do próximo mês, ocorrências do mês), férias do próximo mês e ocorrências do mês atual e do anterior (com as férias do mês anterior)
 - **Funcionários**: lista com busca e cadastro (CPF, RG e UA aceitam qualquer formato)
 - **Histórico - Funcionário**: férias e ocorrências de um funcionário, de 12 meses antes a 12 meses depois
 - **Cargos**: grade editável
 - **Férias**: lista com período (1º ao 4º), número do processo e filtro de recentes
-- **Ocorrências**: lista e cadastro, com número do processo
+- **Ocorrências**: lista e cadastro, com número do processo; a lista mostra por padrão só o mês atual (filtro "Recente")
 
 Requisitos: Oracle 12c ou superior (usa colunas `GENERATED ALWAYS AS IDENTITY`) e uma instância do Oracle APEX para a camada de interface (não incluída neste repositório).
 

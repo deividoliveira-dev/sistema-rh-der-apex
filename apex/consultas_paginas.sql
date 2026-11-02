@@ -36,6 +36,33 @@ SELECT valor, titulo, icone, link
 SELECT INITCAP(TO_CHAR(ADD_MONTHS(SYSDATE, 1), 'FMMonth', 'NLS_DATE_LANGUAGE=PORTUGUESE')) FROM dual;
 
 --------------------------------------------------------------------------------
+-- Página 1 (Home) - região "Ocorrências" (Classic Report)
+-- Mostra as ocorrências do mês atual e do mês anterior, mais as férias (não canceladas)
+-- que tocaram o mês anterior. A janela anda sozinha: vira o mês, muda a lista.
+--------------------------------------------------------------------------------
+SELECT nome, descricao, data
+  FROM (
+        SELECT f.nome,
+               'Ocorrência: ' || o.tipo_ocorrencia AS descricao,
+               o.data_ocorrencia AS data
+          FROM ocorrencias o
+          JOIN funcionarios f ON f.id_funcionario = o.id_funcionario
+         WHERE o.data_ocorrencia >= ADD_MONTHS(TRUNC(SYSDATE, 'MM'), -1)
+           AND o.data_ocorrencia <  ADD_MONTHS(TRUNC(SYSDATE, 'MM'), 1)
+        UNION ALL
+        SELECT f.nome,
+               'Férias: ' || TO_CHAR(fr.data_inicio, 'DD/MM') || ' a '
+                          || TO_CHAR(fr.data_fim, 'DD/MM') AS descricao,
+               fr.data_inicio AS data
+          FROM ferias fr
+          JOIN funcionarios f ON f.id_funcionario = fr.id_funcionario
+         WHERE fr.situacao <> 'CANCELADA'
+           AND fr.data_inicio <  TRUNC(SYSDATE, 'MM')
+           AND fr.data_fim    >= ADD_MONTHS(TRUNC(SYSDATE, 'MM'), -1)
+       )
+ ORDER BY data DESC;
+
+--------------------------------------------------------------------------------
 -- Página 4 (Férias) - região do relatório (Interactive Report)
 -- A coluna RECENTE alimenta o filtro padrão "Recente = Sim".
 --------------------------------------------------------------------------------
@@ -60,6 +87,8 @@ SELECT fr.id_ferias,
 
 --------------------------------------------------------------------------------
 -- Página 6 (Ocorrências) - região do relatório (Interactive Report)
+-- A coluna RECENTE alimenta o filtro padrão "Recente = Sim": só o mês atual aparece
+-- e a lista "limpa" sozinha na virada do mês (para ver as antigas, tire o filtro).
 --------------------------------------------------------------------------------
 SELECT o.id_ocorrencia,
        f.nome AS funcionario,
@@ -68,7 +97,8 @@ SELECT o.id_ocorrencia,
        o.data_ocorrencia,
        o.tipo_ocorrencia,
        o.descricao,
-       o.registrado_por
+       o.registrado_por,
+       CASE WHEN o.data_ocorrencia >= TRUNC(SYSDATE, 'MM') THEN 'Sim' ELSE 'Não' END AS recente
   FROM ocorrencias o
   JOIN funcionarios f ON f.id_funcionario = o.id_funcionario;
 
