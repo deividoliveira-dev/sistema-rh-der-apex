@@ -1,0 +1,64 @@
+# Sistema RH - DER (Oracle APEX)
+
+Sistema de gestão de RH desenvolvido em **Oracle (SQL)** com interface em **Oracle APEX**, para um Departamento de Estradas e Rodagem (DER). Cobre cadastro de funcionários, cargos, setores, categorias, unidades administrativas, férias e ocorrências, além de um dashboard com indicadores.
+
+## Estrutura do banco
+
+- **setores** — setores/departamentos da empresa
+- **cargos** — cargos disponíveis
+- **categorias** — categoria funcional do servidor (efetivo, celetista, comissão, etc.)
+- **unidades_administrativas** — unidades administrativas (UA)
+- **funcionarios** — cadastro principal, com FK para cargo, setor e categoria
+- **ferias** — períodos de férias por funcionário, com período (1º ao 4º) e número do processo
+- **ocorrencias** — anotações/ocorrências do funcionário (falta, atestado, advertência, elogio, etc.)
+- **rh_usuarios** — usuários com acesso ao sistema (autenticação fica a cargo do APEX)
+
+O app trabalha com tabelas e views, e a gravação (incluir, editar, excluir) é feita pelos processos nativos do APEX (Automatic Row Processing). A integridade dos dados vem das constraints das tabelas e das validações do APEX.
+
+## Estrutura de pastas
+
+```
+sql/
+  01_ddl_sistema_rh.sql       -- criação das tabelas (setores, cargos, funcionarios, ferias, ocorrencias, rh_usuarios)
+  02_views_dashboard.sql       -- views de apoio para os cards/relatórios do dashboard
+  03_categorias_rg_ua.sql      -- tabelas categorias/UA + colunas rg/categoria/ua em funcionarios
+  04_carga_planilha.sql        -- carga em massa de funcionários a partir de planilha (staging + insert)
+  05_ajustes_pos_apex.sql      -- número do processo, tipo LICENCA, CPF/RG/UA flexíveis e view de férias do próximo mês
+  06_periodo_ferias.sql        -- período das férias (1º ao 4º)
+
+apex/
+  estilos.css                  -- CSS do app (logo, cards, quadros e tabelas da Home, tela de login)
+  app.js                       -- tooltip com o nome nos ícones do menu lateral
+  rodovia.webp                 -- imagem de fundo da tela de login (gerada por IA)
+  icons/                       -- logo do DER em PNG (app-icon-*.png), usado na tela de login
+                                  (no APEX: Static Application Files, diretório icons)
+  consultas_paginas.sql        -- consultas de cada região das páginas do APEX (referência)
+
+historico/
+  01_ddl_sistema_rh_sem_rhusuarios.sql  -- versão inicial da DDL (antes de renomear USUARIOS -> RH_USUARIOS)
+  04_carga_planilha_v1.sql              -- primeiras versões do script de carga, mantidas como referência
+  04_carga_planilha_v2.sql
+  04_carga_planilha_v3.sql
+```
+
+## Ordem de execução
+
+Rodar os scripts da pasta `sql/` **em ordem numérica** (01 a 06). O script 04 (carga da planilha) depende das tabelas criadas no 03, e o 05 e o 06 aplicam os ajustes feitos depois, durante a construção do app no APEX.
+
+## Telas do app (Oracle APEX)
+
+- **Login**: fundo com imagem desfocada, logo do DER e campos claros (o CSS da imagem fica no campo Inline da página 9999)
+- **Home**: indicadores clicáveis (funcionários, férias do próximo mês, ocorrências do mês), férias do próximo mês e ocorrências do mês atual e do anterior (com as férias do mês anterior)
+- **Funcionários**: lista com busca e cadastro (CPF, RG e UA aceitam qualquer formato)
+- **Histórico - Funcionário**: férias e ocorrências de um funcionário, de 12 meses antes a 12 meses depois
+- **Cargos**: grade editável
+- **Férias**: lista com período (1º ao 4º), número do processo e filtro de recentes
+- **Ocorrências**: lista e cadastro, com número do processo; a lista mostra por padrão só o mês atual (filtro "Recente")
+
+Requisitos: Oracle 12c ou superior (usa colunas `GENERATED ALWAYS AS IDENTITY`) e uma instância do Oracle APEX para a camada de interface (não incluída neste repositório).
+
+## Observações
+
+- Os dados de exemplo inseridos nos scripts (setores, cargos, categorias) são fictícios, usados apenas para testar o APEX rapidamente.
+- Autenticação de usuários é feita pelo esquema de autenticação do próprio APEX (ou LDAP/SSO), não por senha armazenada em tabela.
+- Este repositório contém apenas os scripts de banco de dados (tabelas, views e cargas). O app do APEX (páginas, processos, relatórios) deve ser exportado separadamente do Application Builder, se for versionado também.

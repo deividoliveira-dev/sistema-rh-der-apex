@@ -1,0 +1,315 @@
+/* Logo do cabeçalho: para mudar o tamanho, altere só o valor de --logo-altura */
+:root {
+  --logo-altura: 72px;
+}
+
+.apex-logo-img {
+  height: var(--logo-altura) !important;
+  width: auto !important;
+  max-height: none !important;
+  max-width: none !important;
+  vertical-align: middle;
+}
+
+.t-Header-logo-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Balão com o nome ao passar o mouse nos itens do menu lateral */
+.t-Body-nav,
+.t-Body-navContent,
+.t-Body-nav .a-TreeView {
+  overflow: visible !important;
+}
+
+.t-Body-nav a[data-tip] {
+  position: relative;
+}
+
+.t-Body-nav a[data-tip]:hover::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: #2B2B2B;
+  color: #FFFFFF;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  white-space: nowrap;
+  z-index: 2000;
+  pointer-events: none;
+}
+
+/* Círculos dos ícones dos cards da Home: todos no mesmo amarelo */
+.a-CardView-icon,
+.a-CardView-initials,
+.t-Cards-icon {
+  background-color: #EBCF6B !important;
+  color: #1F1F1F !important;
+}
+
+/* Cards da Home: número grande em destaque e rótulo pequeno embaixo */
+.a-CardView-title {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.a-CardView-subTitle {
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #6B6B6B;
+}
+
+/* Acabamento da Home: cards e quadros com cantos arredondados e sombra suave */
+.a-CardView-item,
+.a-CardView-items > li,
+.t-Region {
+  border-radius: 12px;
+  border: 1px solid #ECEAE5;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.t-Region {
+  overflow: hidden;
+}
+
+.t-Region-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Tabelas da Home: cabeçalho discreto, linhas limpas, uma linha por registro */
+.t-Report-report {
+  width: 100%;
+}
+
+.t-Report-report th,
+.t-Report-colHead {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  background-color: #FAF9F7;
+  color: #6B6B6B !important;
+}
+
+.t-Report-report th a {
+  color: #6B6B6B !important;
+}
+
+.t-Report-report td {
+  font-size: 0.85rem;
+  padding: 10px 14px;
+  white-space: nowrap;
+  border-color: #F0EEE9;
+  background-color: #FFFFFF;
+}
+
+.t-Report-report td {
+  cursor: default;
+}
+
+/* Tabela encaixada no quadro: ocupa a largura toda, sem moldura própria */
+.t-Region-body:has(.t-Report) {
+  padding: 0 !important;
+}
+
+.t-Region-header:has(+ .t-Region-bodyWrap .t-Report),
+.t-Region:has(.t-Report) .t-Region-header {
+  border-bottom: 1px solid #F0EEE9;
+}
+
+.t-Report,
+.t-Report-wrap,
+.t-Report-tableWrap {
+  width: 100%;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.t-Report-report th,
+.t-Report-report td {
+  border-left: 0 !important;
+  border-right: 0 !important;
+}
+
+.t-Report-report th:first-child,
+.t-Report-report td:first-child {
+  padding-left: 20px;
+}
+
+.t-Report-report th:last-child,
+.t-Report-report td:last-child {
+  padding-right: 20px;
+}
+
+.t-Report-report tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* Home: quadros com tabela têm a altura do próprio conteúdo */
+.t-Region:has(.t-Report) {
+  height: auto !important;
+  min-height: 0 !important;
+  align-self: start;
+}
+
+.t-Region:has(.t-Report) .t-Region-bodyWrap,
+.t-Region:has(.t-Report) .t-Region-body {
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+/* Home: quadros com tabela em tom informativo (somente leitura) */
+.t-Region:has(.t-Report) {
+  background-color: #F6F4EF;
+  border: 1px solid #E4E0D6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06), 0 12px 30px rgba(0, 0, 0, 0.14);
+}
+
+.t-Region:has(.t-Report) .t-Region-header {
+  background-color: #EFEBE0;
+}
+
+.t-Report-report th,
+.t-Report-colHead {
+  background-color: #EFEBE0;
+  color: #7A766D !important;
+}
+
+.t-Report-report td {
+  background-color: transparent;
+  color: #5E5B55;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  border-color: #E4E0D6;
+}
+
+.t-Report-report tbody tr:hover td {
+  background-color: transparent;
+}
+
+/* ===== Tela de login (estilo app) ===== */
+body.t-PageBody--login {
+  background: #2E2A27;
+}
+.t-Login-region {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+/* logo do DER maior, sem o quadrado em volta (o corte central tira a margem transparente do PNG) */
+.t-Login-logo {
+  width: 260px;
+  height: 110px;
+  object-fit: cover;
+  object-position: center;
+  background-color: transparent !important;
+  background-size: cover;
+  background-position: center;
+  border-radius: 0;
+}
+.t-Login-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: #F6F4EF;
+}
+.t-Login-title::after {
+  content: "Gestão de Recursos Humanos";
+  display: block;
+  margin-top: 6px;
+  font-size: .8rem;
+  font-weight: 400;
+  letter-spacing: .02em;
+  color: #D8D3C6;
+}
+
+/* campos */
+.t-Login-region input[type="text"],
+.t-Login-region input[type="password"] {
+  height: 52px;
+  background: #F6F4EF;
+  border: 1px solid #E4E0D6;
+  border-radius: 12px;
+  color: #1F1F1F;
+  box-shadow: none;
+}
+.t-Login-region input::placeholder {
+  color: #7A766D;
+}
+.t-Login-region input[type="text"]:focus,
+.t-Login-region input[type="password"]:focus {
+  border-color: #EBCF6B;
+  box-shadow: 0 0 0 1px #EBCF6B;
+}
+.t-Login-region .apex-item-icon,
+.t-Login-region .fa {
+  color: #6B6B6B;
+}
+.t-Login-region label {
+  color: #F6F4EF;
+}
+
+/* olhinho de mostrar senha: dentro do campo, sem caixa própria */
+.t-Login-region .apex-item-group--password {
+  position: relative;
+}
+.t-Login-region .apex-item-group--password input {
+  width: 100%;
+  padding-right: 48px;
+}
+.t-Login-region .t-Button--passwordVisibility {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: #6B6B6B;
+}
+.t-Login-region .t-Button--passwordVisibility .t-Icon,
+.t-Login-region .t-Button--passwordVisibility .fa {
+  color: #6B6B6B;
+}
+.t-Login-region .t-Button--passwordVisibility:hover {
+  background: rgba(0, 0, 0, .06);
+}
+.t-Login-region .t-Button--passwordVisibility:focus {
+  box-shadow: none;
+  outline: 2px solid #EBCF6B;
+  outline-offset: -2px;
+}
+
+/* impede o fundo azul claro do preenchimento automático do navegador */
+.t-Login-region input:-webkit-autofill,
+.t-Login-region input:-webkit-autofill:hover,
+.t-Login-region input:-webkit-autofill:focus,
+.t-Login-region input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #F6F4EF inset !important;
+  -webkit-text-fill-color: #1F1F1F !important;
+  caret-color: #1F1F1F;
+  transition: background-color 99999s ease-in-out 0s;
+}
+
+/* botão */
+.t-Login-buttons .t-Button--hot {
+  height: 52px;
+  background: #EBCF6B;
+  color: #2E2A27;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  box-shadow: none;
+}
+.t-Login-buttons .t-Button--hot:hover {
+  background: #E2C25A;
+}

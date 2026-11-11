@@ -1,0 +1,8 @@
+/* Página 9999 (Login) -> CSS -> Inline
+   Imagem de fundo com degradê escuro por cima. O arquivo rodovia.webp fica em
+   Shared Components -> Static Application Files (raiz, sem diretório). */
+body.t-PageBody--login {
+  background:
+    linear-gradient(180deg, rgba(46, 42, 39, .55), rgba(46, 42, 39, .85)),
+    url(#APP_FILES#rodovia.webp) center / cover no-repeat fixed !important;
+}
